@@ -186,6 +186,18 @@
             navigator.clipboard.writeText(t);
             alert("Metadata Copied!");
         }
+window.onload = () => {
+    // Mengambil kata setelah garis miring terakhir
+    const path = window.location.pathname.split('/').pop();
+    
+    // Jika ada kata kunci di URL (dan bukan file html)
+    if (path && !path.includes('.html')) {
+        const topic = path.replace(/-/g, ' '); // Ubah tanda - kembali jadi spasi
+        document.getElementById('topicInput').value = topic;
+        handleGenerate(); // Langsung eksekusi AI
+    }
+}
     </script>
+
 </body>
 </html>
