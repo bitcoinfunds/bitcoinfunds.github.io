@@ -175,7 +175,7 @@
 
             // Update UI
             document.title = `${topic.toUpperCase()} | YT SEO`;
-            document.getElementById('dynamicHeading').innerHTML = `Neural Assets: <span class="text-red-600">${topic}</span>`;
+            document.getElementById('dynamicHeading').innerHTML = `<span class="text-red-600">${topic}</span>`;
             
             if (!isHistory) {
                 const slug = topic.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
