@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT SEO Suite - AI Metadata Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0a0a0a; color: #ffffff; }
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .gradient-text { background: linear-gradient(90deg, #ff4d4d, #f9cb28); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-6">
+
+    <!-- Header Section -->
+    <header class="text-center my-12">
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4">
+            Dapatkan Judul <span class="text-red-600">Viral</span><br>Dengan AI
+        </h1>
+        <p class="text-gray-400 text-lg">Optimalkan Metadata Video YouTube Anda dalam Sekejap.</p>
+    </header>
+
+    <!-- Input Section -->
+    <div class="w-full max-w-3xl glass-card rounded-2xl p-2 mb-8 flex flex-col md:flex-row gap-2">
+        <input type="text" id="topicInput" placeholder="Ketik topik video Anda di sini..." 
+            class="flex-1 bg-transparent border-none outline-none p-4 text-xl text-white placeholder-gray-600">
+        <button onclick="handleGenerate()" id="btnGenerate"
+            class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-xl transition-all active:scale-95 uppercase tracking-wider">
+            Generate
+        </button>
+    </div>
+
+    <!-- AdSense Placeholder (Top) -->
+    <div class="w-full max-w-4xl h-24 glass-card rounded-xl mb-8 flex items-center justify-center text-gray-600 text-sm uppercase tracking-widest">
+        AdSense Ad Space
+    </div>
+
+    <!-- Loading & Error Message -->
+    <div id="loading" class="hidden mb-4 text-blue-400 font-medium animate-pulse">Sedang meracik konten...</div>
+    <div id="errorMessage" class="hidden mb-4 text-red-500 font-medium text-center"></div>
+
+    <!-- Results Section -->
+    <div id="resultsContainer" class="w-full max-w-4xl grid grid-cols-1 gap-6">
+        <!-- Hasil akan muncul di sini -->
+    </div>
+
+    <!-- Footer / AdSense Placeholder (Bottom) -->
+    <div class="mt-12 w-full max-w-4xl h-24 glass-card rounded-xl flex items-center justify-center text-gray-600 text-sm uppercase tracking-widest">
+        AdSense Ad Space
+    </div>
+
+    <script>
+        // KONFIGURASI WORKER ANDA
+        const API_ENDPOINT = 'https://gemini-api-beridge.solitontoken.workers.dev';
+
+        async function handleGenerate() {
+            const input = document.getElementById('topicInput');
+            const topic = input.value.trim();
+            
+            if (!topic) {
+                alert("Masukkan topik terlebih dahulu!");
+                return;
+            }
+
+            // 1. Update URL (Slug) - Strategi Reload/SEO
+            const slug = topic.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+            window.history.pushState({}, '', '/' + slug);
+
+            // 2. UI Loading State
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('errorMessage').classList.add('hidden');
+            document.getElementById('resultsContainer').innerHTML = '';
+            document.getElementById('btnGenerate').disabled = true;
+
+            try {
+                const response = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ topic: topic })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || "Gagal menghubungi AI");
+                }
+
+                const data = await response.json();
+                displayResults(data.results);
+
+            } catch (err) {
+                console.error(err);
+                const errEl = document.getElementById('errorMessage');
+                errEl.innerText = "Error: " + err.message + ". Pastikan Cloudflare Worker aktif.";
+                errEl.classList.remove('hidden');
+            } finally {
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('btnGenerate').disabled = false;
+            }
+        }
+
+        function displayResults(results) {
+            const container = document.getElementById('resultsContainer');
+            results.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'glass-card p-6 rounded-2xl border-l-4 border-red-600 hover:scale-[1.01] transition-transform';
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs font-bold bg-red-600 px-2 py-1 rounded">VARIAN ${index + 1}</span>
+                        <button onclick="copyText('${item.title}')" class="text-xs text-gray-400 hover:text-white underline">Salin Judul</button>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-white">${item.title}</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">${item.desc}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function copyText(text) {
+            navigator.clipboard.writeText(text);
+            alert("Judul disalin!");
+        }
+
+        // Otomatis jalankan jika ada slug di URL (Fitur Reload)
+        window.onload = () => {
+            const path = window.location.pathname.substring(1);
+            if (path && path !== "index.html" && path !== "404.html") {
+                const topic = path.replace(/-/g, ' ');
+                document.getElementById('topicInput').value = topic;
+                handleGenerate();
+            }
+        }
+    </script>
+</body>
+</html>
