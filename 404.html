@@ -3,94 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">YT SEO Suite - AI Metadata Generator</title>
-    <meta id="metaDesc" name="description" content="Free AI-powered YouTube title and description generator to boost your video CTR and views instantly.">
+    <title id="pageTitle">YT SEO Suite - Global AI Generator</title>
+    <meta id="metaDesc" name="description" content="Free AI YouTube SEO tool for viral titles and descriptions.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #050505; color: #ffffff; font-family: 'Inter', sans-serif; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s ease; }
-        .glass-card:hover { border-color: rgba(220, 38, 38, 0.5); transform: translateY(-2px); }
-        .nav-link { color: #9ca3af; transition: color 0.2s; }
-        .nav-link:hover { color: #ffffff; }
-        .premium-shadow { box-shadow: 0 0 50px -12px rgba(220, 38, 38, 0.15); }
+        body { background-color: #050505; color: #ffffff; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .premium-shadow { box-shadow: 0 0 40px -10px rgba(220, 38, 38, 0.2); }
+        .ad-box { background: rgba(220, 38, 38, 0.05); border: 2px dashed rgba(220, 38, 38, 0.2); }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
 
-    <!-- Navigation Header -->
-    <nav class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-        <div class="text-2xl font-black tracking-tighter text-red-600">YT<span class="text-white">SEO</span></div>
-        <div class="hidden md:flex gap-8 font-medium">
-            <a href="/" class="nav-link">Home</a>
-            <a href="#faq" class="nav-link">FAQ</a>
-            <a href="#" class="nav-link text-red-500 font-bold">Pro Tools</a>
+    <nav class="w-full max-w-7xl mx-auto px-6 py-8 flex justify-between items-center">
+        <div class="text-3xl font-black tracking-tighter text-red-600">YT<span class="text-white">SEO</span></div>
+        <div class="hidden md:flex gap-10 font-bold text-sm uppercase tracking-widest text-gray-400">
+            <a href="/" class="hover:text-white transition">Home</a>
+            <a href="#faq" class="hover:text-white transition">FAQ</a>
         </div>
-        <button class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm">Get Started</button>
     </nav>
 
-    <!-- Hero Section -->
-    <main class="flex-grow flex flex-col items-center px-6">
-        <header class="text-center mt-16 mb-12">
-            <h1 id="dynamicHeading" class="text-5xl md:text-8xl font-black tracking-tighter leading-none mb-6 italic">
-                Get <span class="text-red-600">Viral</span> Titles<br>With AI
+    <main class="flex-grow flex flex-col items-center px-4">
+        <header class="text-center mt-12 mb-12">
+            <h1 id="dynamicHeading" class="text-5xl md:text-7xl font-black tracking-tighter mb-4 italic uppercase">
+                Viral <span class="text-red-600">AI</span> Generator
             </h1>
-            <p class="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto">Optimize your YouTube video metadata in seconds for maximum global reach.</p>
+            <p id="dynamicSub" class="text-gray-500 text-lg">Boost your global YouTube reach with machine learning.</p>
         </header>
 
-        <!-- Search Bar -->
-        <div class="w-full max-w-3xl glass-card rounded-3xl p-3 mb-10 flex flex-col md:row gap-2 premium-shadow">
-            <input type="text" id="topicInput" placeholder="Enter video topic e.g. 'Bitcoin analysis 2026'" 
-                class="flex-1 bg-transparent border-none outline-none p-4 text-xl font-medium text-white placeholder-gray-700">
+        <!-- Sejajar: Input & Button -->
+        <div class="w-full max-w-4xl flex flex-col md:flex-row gap-4 mb-16">
+            <div class="flex-grow glass-card rounded-2xl p-2 flex items-center premium-shadow">
+                <input type="text" id="topicInput" placeholder="Enter video topic..." 
+                    class="w-full bg-transparent border-none outline-none px-6 py-4 text-xl font-bold text-white placeholder-gray-800">
+            </div>
             <button onclick="handleGenerate()" id="btnGenerate"
-                class="bg-red-600 hover:bg-red-700 text-white font-black px-10 py-5 rounded-2xl transition-all active:scale-95 uppercase">
+                class="bg-red-600 hover:bg-red-700 text-white font-black px-12 py-6 rounded-2xl transition-all uppercase tracking-widest">
                 Generate
             </button>
         </div>
 
-        <!-- Ads Space 1 -->
-        <div class="w-full max-w-4xl h-32 glass-card rounded-2xl mb-12 flex items-center justify-center text-gray-700 font-bold uppercase tracking-[0.5em] text-[10px]">
-            ADVERTISEMENT
-        </div>
+        <div id="loading" class="hidden mb-10 text-red-600 font-black animate-bounce tracking-[0.3em]">PROCESSING DATA...</div>
 
-        <div id="loading" class="hidden mb-10 text-red-500 font-bold animate-pulse tracking-widest uppercase italic">AI is cooking...</div>
-
-        <!-- Results Container -->
-        <div id="resultsContainer" class="w-full max-w-4xl space-y-8">
-            <!-- Results will be injected here -->
-        </div>
-
-        <!-- Ads Space 2 -->
-        <div id="bottomAds" class="hidden mt-12 w-full max-w-4xl h-32 glass-card rounded-2xl flex items-center justify-center text-gray-700 font-bold uppercase tracking-[0.5em] text-[10px]">
-            ADVERTISEMENT
+        <!-- Grid 3x3 Container -->
+        <div id="resultsGrid" class="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+            <!-- Items injected here: 7 Results + 2 Ads -->
         </div>
 
         <!-- FAQ Section -->
-        <section id="faq" class="w-full max-w-3xl mt-32 mb-20">
-            <h2 class="text-3xl font-black mb-10 italic underline decoration-red-600">Frequently Asked Questions</h2>
-            <div class="space-y-6">
-                <div class="glass-card p-8 rounded-2xl">
-                    <h3 class="font-bold text-xl mb-2 text-red-500">Is this tool free to use?</h3>
-                    <p class="text-gray-400">Absolutely! Our tool is 100% free for creators to optimize their SEO and increase video visibility.</p>
+        <section id="faq" class="w-full max-w-4xl mt-20 mb-20">
+            <h2 class="text-3xl font-black mb-8 italic text-red-600 uppercase">Analysis FAQ</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="glass-card p-8 rounded-3xl">
+                    <h3 class="font-bold text-xl mb-3">What is SEO Score?</h3>
+                    <p class="text-gray-500 leading-relaxed">It's an AI-calculated metric (6-10) indicating how well your metadata aligns with current global search trends.</p>
                 </div>
-                <div class="glass-card p-8 rounded-2xl">
-                    <h3 class="font-bold text-xl mb-2 text-red-500">How does the AI work?</h3>
-                    <p class="text-gray-400">We use the latest Gemini 2.5 Flash model to analyze keywords and generate high-CTR titles used by top creators.</p>
+                <div class="glass-card p-8 rounded-3xl">
+                    <h3 class="font-bold text-xl mb-3">Global Compatibility?</h3>
+                    <p class="text-gray-500 leading-relaxed">Yes, all generated assets are optimized for the English-speaking YouTube algorithm worldwide.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="w-full border-t border-gray-900 mt-20 px-6 py-10 bg-black">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
-            <div>© 2026 YTSEO Global Suite. All rights reserved.</div>
-            <div class="flex gap-8">
-                <a href="#" class="hover:text-white">Privacy</a>
-                <a href="#" class="hover:text-white">Terms</a>
-                <a href="#" class="hover:text-white">Contact</a>
-            </div>
-        </div>
+    <footer class="w-full border-t border-gray-900 px-6 py-12 bg-black text-center text-gray-600 text-sm">
+        © 2026 YTSEO GLOBAL SUITE • HIGH PERFORMANCE AI
     </footer>
 
     <script>
@@ -101,19 +79,21 @@
             const topic = input.value.trim();
             if (!topic) return;
 
-            // 1. Dynamic SEO & Heading
-            document.getElementById('dynamicHeading').innerHTML = `SEO Assets for <span class="text-red-600 uppercase">${topic}</span>`;
-            document.title = `SEO Metadata for ${topic} | YT SEO Suite`;
-            document.getElementById('metaDesc').content = `Get 7 viral title and description variations for ${topic} to boost your YouTube algorithm performance.`;
+            // Dinamis Title & Meta
+            const newTitle = `SEO Strategy for ${topic.toUpperCase()} | YT SEO`;
+            const newDesc = `Top 7 viral YouTube metadata strategies for ${topic}. Professional AI-generated titles and descriptions with high SEO scoring.`;
+            
+            document.getElementById('pageTitle').innerText = newTitle;
+            document.getElementById('metaDesc').setAttribute("content", newDesc);
+            document.getElementById('dynamicHeading').innerHTML = `SEO Assets for <span class="text-red-600">${topic}</span>`;
+            document.getElementById('dynamicSub').innerText = `Displaying high-performing metadata for "${topic}"`;
 
-            // 2. URL Slug
+            // URL Slug
             const slug = topic.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
             window.history.pushState({}, '', '/' + slug);
 
-            // 3. UI State
             document.getElementById('loading').classList.remove('hidden');
-            document.getElementById('resultsContainer').innerHTML = '';
-            document.getElementById('bottomAds').classList.add('hidden');
+            document.getElementById('resultsGrid').innerHTML = '';
 
             try {
                 const response = await fetch(API_ENDPOINT, {
@@ -122,40 +102,61 @@
                     body: JSON.stringify({ topic: topic })
                 });
                 const data = await response.json();
-                renderCards(data.results);
+                
+                // Filter Skor >= 6
+                const filteredResults = data.results.filter(item => item.seo_score >= 6);
+                renderGrid(filteredResults);
             } catch (err) {
-                alert("Generation failed. Please check your connection.");
+                alert("Connection error.");
             } finally {
                 document.getElementById('loading').classList.add('hidden');
             }
         }
 
-        function renderCards(results) {
-            const container = document.getElementById('resultsContainer');
-            results.forEach((item, index) => {
-                const card = document.createElement('div');
-                card.className = 'glass-card p-8 md:p-12 rounded-[2rem] relative overflow-hidden premium-shadow';
-                card.innerHTML = `
-                    <div class="absolute top-0 left-0 bg-red-600 text-white text-[10px] font-black px-5 py-1 uppercase tracking-widest">Option ${index + 1}</div>
-                    <button onclick="copy('${item.title}')" class="absolute top-6 right-8 text-gray-500 hover:text-white text-[10px] font-black uppercase tracking-widest underline">Copy Title</button>
-                    <h3 class="text-2xl md:text-4xl font-extrabold mb-6 mt-6 leading-tight text-white">${item.title}</h3>
-                    <p class="text-gray-400 text-lg md:text-xl leading-relaxed font-medium">${item.desc}</p>
-                `;
-                container.appendChild(card);
-            });
-            document.getElementById('bottomAds').classList.remove('hidden');
+        function renderGrid(results) {
+            const grid = document.getElementById('resultsGrid');
+            let resultIndex = 0;
+
+            // Kita buat 9 iterasi untuk Grid 3x3
+            for (let i = 1; i <= 9; i++) {
+                const box = document.createElement('div');
+                
+                // Cek urutan 2 dan 4 untuk Iklan
+                if (i === 2 || i === 4) {
+                    box.className = 'ad-box rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center min-h-[350px]';
+                    box.innerHTML = `
+                        <span class="text-[10px] font-black tracking-[0.4em] text-red-400 mb-4 uppercase">Sponsored Content</span>
+                        <div class="text-gray-700 font-bold">ADSENSE UNIT</div>
+                    `;
+                } else {
+                    // Ambil hasil dari array jika masih ada
+                    const res = results[resultIndex];
+                    if (res) {
+                        box.className = 'glass-card rounded-[2.5rem] p-10 flex flex-col premium-shadow border-t-4 border-t-red-600 min-h-[400px]';
+                        box.innerHTML = `
+                            <div class="flex justify-between items-center mb-6">
+                                <div class="bg-red-600 text-white text-[10px] font-black px-4 py-1 uppercase rounded-full">Score: ${res.seo_score}/10</div>
+                                <button onclick="copy('${res.title}')" class="text-[10px] font-bold text-gray-500 hover:text-white uppercase underline">Copy</button>
+                            </div>
+                            <h3 class="text-2xl font-black mb-6 leading-tight text-white">${res.title}</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">${res.desc}</p>
+                        `;
+                        resultIndex++;
+                    }
+                }
+                grid.appendChild(box);
+            }
         }
 
         function copy(t) {
             navigator.clipboard.writeText(t);
-            alert("Copied to clipboard!");
+            alert("Title copied!");
         }
 
         window.onload = () => {
             const path = window.location.pathname.substring(1);
-            if (path && path !== "index.html" && path !== "404.html") {
-                const topic = path.replace(/-/g, ' ');
-                document.getElementById('topicInput').value = topic;
+            if (path && !path.includes('.html')) {
+                document.getElementById('topicInput').value = path.replace(/-/g, ' ');
                 handleGenerate();
             }
         }
