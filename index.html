@@ -3,97 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">YT SEO Suite - Global AI Generator</title>
-    <meta id="metaDesc" name="description" content="Free AI YouTube SEO tool for viral titles and descriptions.">
+    <title id="pageTitle">YT SEO Suite - Premium AI Metadata Architect</title>
+    <meta id="metaDesc" name="description" content="Elevate your YouTube performance with AI-driven metadata optimization.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Premium Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #050505; color: #ffffff; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .premium-shadow { box-shadow: 0 0 40px -10px rgba(220, 38, 38, 0.2); }
-        .ad-box { background: rgba(220, 38, 38, 0.05); border: 2px dashed rgba(220, 38, 38, 0.2); }
+        body { 
+            background-color: #030303; 
+            color: #ffffff; 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        /* Efek bergoyang (Tilt/Scale) saat kursor lewat */
+        .glass-card:hover { 
+            transform: scale(1.03) rotate(1deg); 
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(220, 38, 38, 0.4);
+            z-index: 10;
+        }
+        .ad-box { 
+            background: repeating-linear-gradient(45deg, #080808, #080808 10px, #0c0c0c 10px, #0c0c0c 20px);
+            border: 1px dashed #222;
+        }
+        .premium-glow { box-shadow: 0 0 40px -15px rgba(220, 38, 38, 0.2); }
+        .faq-gradient { background: linear-gradient(180deg, rgba(220,38,38,0.05) 0%, rgba(0,0,0,0) 100%); }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen">
 
-    <nav class="w-full max-w-7xl mx-auto px-6 py-8 flex justify-between items-center">
-        <div class="text-3xl font-black tracking-tighter text-red-600">YT<span class="text-white">SEO</span></div>
-        <div class="hidden md:flex gap-10 font-bold text-sm uppercase tracking-widest text-gray-400">
-            <a href="/" class="hover:text-white transition">Home</a>
-            <a href="#faq" class="hover:text-white transition">FAQ</a>
+    <nav class="w-full max-w-7xl mx-auto px-8 py-10 flex justify-between items-center">
+        <div class="text-3xl font-black tracking-tightest">YT<span class="text-red-600">SEO.</span></div>
+        <div class="flex gap-10 text-[11px] font-bold uppercase tracking-[0.3em] text-gray-500">
+            <a href="#" class="hover:text-red-500 transition">Engine</a>
+            <a href="#faq" class="hover:text-red-500 transition">Intelligence</a>
         </div>
     </nav>
 
-    <main class="flex-grow flex flex-col items-center px-4">
-        <header class="text-center mt-12 mb-12">
-            <h1 id="dynamicHeading" class="text-5xl md:text-7xl font-black tracking-tighter mb-4 italic uppercase">
-                Viral <span class="text-red-600">AI</span> Generator
+    <main class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h1 id="dynamicHeading" class="text-6xl md:text-8xl font-black tracking-tighter mb-6 italic uppercase leading-[0.9]">
+                AI <span class="text-red-600 text-outline">Metadata</span><br>Architect
             </h1>
-            <p id="dynamicSub" class="text-gray-500 text-lg">Boost your global YouTube reach with machine learning.</p>
-        </header>
+            <p id="dynamicSub" class="text-gray-500 text-xl font-medium">Engineered for high-retention global YouTube growth.</p>
+        </div>
 
-        <!-- Sejajar: Input & Button -->
-        <div class="w-full max-w-4xl flex flex-col md:flex-row gap-4 mb-16">
-            <div class="flex-grow glass-card rounded-2xl p-2 flex items-center premium-shadow">
-                <input type="text" id="topicInput" placeholder="Enter video topic..." 
-                    class="w-full bg-transparent border-none outline-none px-6 py-4 text-xl font-bold text-white placeholder-gray-800">
+        <!-- Input Section -->
+        <div class="w-full max-w-4xl mx-auto flex flex-col md:flex-row gap-4 mb-24">
+            <div class="flex-grow glass-card rounded-2xl p-1 flex items-center premium-glow">
+                <input type="text" id="topicInput" placeholder="Analyze your niche..." 
+                    class="w-full bg-transparent border-none outline-none px-8 py-5 text-xl font-semibold text-white placeholder-gray-800">
             </div>
-            <button onclick="handleGenerate()" id="btnGenerate"
-                class="bg-red-600 hover:bg-red-700 text-white font-black px-12 py-6 rounded-2xl transition-all uppercase tracking-widest">
-                Generate
+            <button onclick="handleGenerate()" 
+                class="bg-red-600 hover:bg-red-700 text-white font-black px-12 py-6 rounded-2xl transition-all uppercase tracking-widest text-sm italic">
+                Analyze Topic
             </button>
         </div>
 
-        <div id="loading" class="hidden mb-10 text-red-600 font-black animate-bounce tracking-[0.3em]">PROCESSING DATA...</div>
+        <div id="loading" class="hidden text-center mb-12 text-red-600 font-black animate-pulse tracking-[0.5em] text-xs">CALIBRATING AI NEURAL NETWORK...</div>
 
-        <!-- Grid 3x3 Container -->
-        <div id="resultsGrid" class="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-            <!-- Items injected here: 7 Results + 2 Ads -->
+        <!-- Grid 3x3 -->
+        <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Inject: Pos 2, 5, 8 Ads | Others Metadata -->
         </div>
 
-        <!-- FAQ Section -->
-        <section id="faq" class="w-full max-w-4xl mt-20 mb-20">
-            <h2 class="text-3xl font-black mb-8 italic text-red-600 uppercase">Analysis FAQ</h2>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="glass-card p-8 rounded-3xl">
-                    <h3 class="font-bold text-xl mb-3">What is SEO Score?</h3>
-                    <p class="text-gray-500 leading-relaxed">It's an AI-calculated metric (6-10) indicating how well your metadata aligns with current global search trends.</p>
-                </div>
-                <div class="glass-card p-8 rounded-3xl">
-                    <h3 class="font-bold text-xl mb-3">Global Compatibility?</h3>
-                    <p class="text-gray-500 leading-relaxed">Yes, all generated assets are optimized for the English-speaking YouTube algorithm worldwide.</p>
+        <!-- Professional SEO FAQ -->
+        <section id="faq" class="mt-40 mb-32 faq-gradient p-12 rounded-[3rem] border border-white/5">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-5xl font-black mb-16 italic tracking-tighter uppercase text-center">Optimization <span class="text-red-600">Manual</span></h2>
+                <div class="space-y-12">
+                    <div class="group">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center gap-4 group-hover:text-red-500 transition">
+                            <span class="text-red-600 italic">01.</span> Semantic Keyword Density
+                        </h3>
+                        <p class="text-gray-500 text-lg leading-relaxed pl-12">Our AI utilizes Latent Semantic Indexing (LSI) to map your content against trending global search intents, ensuring your titles trigger the YouTube recommendation algorithm within the first 24 hours.</p>
+                    </div>
+                    <div class="group">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center gap-4 group-hover:text-red-500 transition">
+                            <span class="text-red-600 italic">02.</span> CTR-Driven Hook Architecture
+                        </h3>
+                        <p class="text-gray-500 text-lg leading-relaxed pl-12">Every title variation is designed using the 'Gap Principle'—creating an immediate curiosity loop that forces viewers to click, significantly increasing your organic Impressions-to-View ratio.</p>
+                    </div>
+                    <div class="group">
+                        <h3 class="text-2xl font-bold mb-4 flex items-center gap-4 group-hover:text-red-500 transition">
+                            <span class="text-red-600 italic">03.</span> Meta-Data Scoring System
+                        </h3>
+                        <p class="text-gray-500 text-lg leading-relaxed pl-12">Scores between 6-10 are prioritized based on competitive difficulty and current velocity trends. A 10/10 score represents metadata that has the highest probability of ranking in the 'Suggested Video' sidebar.</p>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="w-full border-t border-gray-900 px-6 py-12 bg-black text-center text-gray-600 text-sm">
-        © 2026 YTSEO GLOBAL SUITE • HIGH PERFORMANCE AI
+    <footer class="border-t border-white/5 py-20 bg-black text-center">
+        <div class="text-gray-700 font-bold tracking-[1em] text-[10px] uppercase">Neural-Link SEO © 2026</div>
     </footer>
 
     <script>
         const API_ENDPOINT = 'https://gemini-api-beridge.solitontoken.workers.dev';
 
         async function handleGenerate() {
-            const input = document.getElementById('topicInput');
-            const topic = input.value.trim();
+            const topic = document.getElementById('topicInput').value.trim();
             if (!topic) return;
 
-            // Dinamis Title & Meta
-            const newTitle = `SEO Strategy for ${topic.toUpperCase()} | YT SEO`;
-            const newDesc = `Top 7 viral YouTube metadata strategies for ${topic}. Professional AI-generated titles and descriptions with high SEO scoring.`;
-            
-            document.getElementById('pageTitle').innerText = newTitle;
-            document.getElementById('metaDesc').setAttribute("content", newDesc);
-            document.getElementById('dynamicHeading').innerHTML = `SEO Assets for <span class="text-red-600">${topic}</span>`;
-            document.getElementById('dynamicSub').innerText = `Displaying high-performing metadata for "${topic}"`;
-
-            // URL Slug
-            const slug = topic.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-            window.history.pushState({}, '', '/' + slug);
+            // Dynamic SEO Logic
+            document.title = `${topic.toUpperCase()} Neural Strategy | YT SEO Architect`;
+            document.getElementById('metaDesc').content = `Advanced AI-driven SEO architecture for ${topic}. Professional-grade titles and metadata.`;
+            document.getElementById('dynamicHeading').innerHTML = `Neural Assets: <span class="text-red-600">${topic}</span>`;
 
             document.getElementById('loading').classList.remove('hidden');
-            document.getElementById('resultsGrid').innerHTML = '';
+            const grid = document.getElementById('resultsGrid');
+            grid.innerHTML = '';
 
             try {
                 const response = await fetch(API_ENDPOINT, {
@@ -102,46 +127,55 @@
                     body: JSON.stringify({ topic: topic })
                 });
                 const data = await response.json();
-                
-                // Filter Skor >= 6
-                const filteredResults = data.results.filter(item => item.seo_score >= 6);
-                renderGrid(filteredResults);
+                const filtered = data.results.filter(r => r.seo_score >= 6);
+                renderGrid(filtered);
             } catch (err) {
-                alert("Connection error.");
+                alert("Neural connection failed.");
             } finally {
                 document.getElementById('loading').classList.add('hidden');
             }
         }
 
+        function getScoreColor(s) {
+            if (s >= 10) return "#22c55e"; // Hijau Pekat
+            if (s >= 8) return "#86efac";  // Hijau Muda
+            if (s >= 7) return "#d9f99d";  // Hijau Kekuningan
+            return "#fef08a";              // Kekuningan
+        }
+
         function renderGrid(results) {
             const grid = document.getElementById('resultsGrid');
-            let resultIndex = 0;
+            let resIdx = 0;
 
-            // Kita buat 9 iterasi untuk Grid 3x3
             for (let i = 1; i <= 9; i++) {
                 const box = document.createElement('div');
                 
-                // Cek urutan 2 dan 4 untuk Iklan
-                if (i === 2 || i === 4) {
-                    box.className = 'ad-box rounded-[2.5rem] p-8 flex flex-col items-center justify-center text-center min-h-[350px]';
+                // Iklan di posisi 2, 5, 8
+                if (i === 2 || i === 5 || i === 8) {
+                    box.className = 'ad-box rounded-[2rem] p-10 flex flex-col items-center justify-center text-center italic';
                     box.innerHTML = `
-                        <span class="text-[10px] font-black tracking-[0.4em] text-red-400 mb-4 uppercase">Sponsored Content</span>
-                        <div class="text-gray-700 font-bold">ADSENSE UNIT</div>
+                        <span class="text-[9px] font-black tracking-[0.5em] text-red-500 mb-6 uppercase">Ad Segment</span>
+                        <div class="text-gray-800 text-xs font-bold leading-relaxed">ADSENSE GLOBAL<br>PREMIUM UNIT</div>
                     `;
                 } else {
-                    // Ambil hasil dari array jika masih ada
-                    const res = results[resultIndex];
+                    const res = results[resIdx];
                     if (res) {
-                        box.className = 'glass-card rounded-[2.5rem] p-10 flex flex-col premium-shadow border-t-4 border-t-red-600 min-h-[400px]';
+                        const color = getScoreColor(res.seo_score);
+                        box.className = 'glass-card rounded-[2.5rem] p-10 flex flex-col justify-between min-h-[450px]';
                         box.innerHTML = `
-                            <div class="flex justify-between items-center mb-6">
-                                <div class="bg-red-600 text-white text-[10px] font-black px-4 py-1 uppercase rounded-full">Score: ${res.seo_score}/10</div>
-                                <button onclick="copy('${res.title}')" class="text-[10px] font-bold text-gray-500 hover:text-white uppercase underline">Copy</button>
+                            <div>
+                                <div class="flex items-center gap-2 mb-8">
+                                    <div class="w-2 h-2 rounded-full animate-pulse" style="background:${color}"></div>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest" style="color:${color}">SEO Power: ${res.seo_score}/10</span>
+                                </div>
+                                <h3 class="text-2xl font-extrabold mb-6 leading-tight text-white italic">${res.title}</h3>
+                                <p class="text-gray-500 text-sm leading-relaxed font-medium mb-8">${res.desc}</p>
                             </div>
-                            <h3 class="text-2xl font-black mb-6 leading-tight text-white">${res.title}</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">${res.desc}</p>
+                            <button onclick="copy('${res.title}')" class="w-full py-4 border border-red-600/30 text-red-500 hover:bg-red-600 hover:text-white transition rounded-xl font-black text-[10px] uppercase tracking-widest">
+                                Copy Strategy
+                            </button>
                         `;
-                        resultIndex++;
+                        resIdx++;
                     }
                 }
                 grid.appendChild(box);
@@ -150,15 +184,7 @@
 
         function copy(t) {
             navigator.clipboard.writeText(t);
-            alert("Title copied!");
-        }
-
-        window.onload = () => {
-            const path = window.location.pathname.substring(1);
-            if (path && !path.includes('.html')) {
-                document.getElementById('topicInput').value = path.replace(/-/g, ' ');
-                handleGenerate();
-            }
+            alert("Metadata Copied!");
         }
     </script>
 </body>
