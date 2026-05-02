@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">YT SEO Suite - Premium AI Metadata Architect</title>
-    <meta id="metaDesc" name="description" content="Elevate your YouTube performance with AI-driven metadata optimization.">
+    <title id="pageTitle">YT SEO Suite - Inject Power into Metadata</title>
+    <meta id="metaDesc" name="description" content="Enter your video topic and let our SEO engine forge high-value metadata variations.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-    <!-- AdSense Header Script (Ganti ID AdSense Anda di sini jika diperlukan) -->
+    <!-- AdSense Header Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-CA-PUB-SILAKAN-GANTI-DISINI" crossorigin="anonymous"></script>
     <style>
         body { background-color: #030303; color: #ffffff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-        .glass-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.07); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .glass-card:hover { transform: scale(1.02) translateY(-5px); background: rgba(255, 255, 255, 0.04); border-color: rgba(220, 38, 38, 0.4); z-index: 10; }
-        .ad-box { background: #080808; border: 1px solid #1a1a1a; position: relative; overflow: hidden; }
-        .premium-glow { box-shadow: 0 0 40px -15px rgba(220, 38, 38, 0.2); }
-        .faq-gradient { background: linear-gradient(180deg, rgba(220,38,38,0.05) 0%, rgba(0,0,0,0) 100%); }
-        /* Memperhalus tampilan deskripsi agar terlihat mahal */
-        .desc-text { color: #9ca3af; line-height: 1.7; font-weight: 400; letter-spacing: 0.01em; }
+        .glass-input { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
+        .glass-input:focus-within { border-color: rgba(220, 38, 38, 0.5); background: rgba(255, 255, 255, 0.05); box-shadow: 0 0 30px -10px rgba(220, 38, 38, 0.3); }
+        .tag-pill { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); color: #666; font-size: 10px; letter-spacing: 0.1em; }
+        .glass-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.07); transition: all 0.4s ease; }
+        .glass-card:hover { transform: translateY(-5px); border-color: rgba(220, 38, 38, 0.4); background: rgba(255, 255, 255, 0.04); }
+        .btn-generate { background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%); cursor: pointer; }
+        .premium-desc { color: #9ca3af; line-height: 1.7; font-weight: 400; }
+        .ad-box { background: #080808; border: 1px solid #1a1a1a; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -31,47 +32,43 @@
     </nav>
 
     <main class="max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16">
-            <h1 id="dynamicHeading" class="text-6xl md:text-8xl font-black tracking-tighter mb-6 uppercase leading-[0.9]">
-                AI <span class="text-red-600">Metadata</span><br>Architect
+        <!-- Landing Section (Sesuai Gambar Referensi) -->
+        <div id="heroSection" class="text-center py-10">
+            <h1 id="dynamicHeading" class="text-5xl md:text-7xl font-black tracking-tight mb-6 uppercase">
+                Inject <span class="text-red-600">Power</span> into your<br>Metadata
             </h1>
-            <p id="dynamicSub" class="text-gray-500 text-xl font-medium">Engineered for high-retention global YouTube growth.</p>
-        </div>
+            <p id="dynamicSub" class="premium-desc text-lg md:text-xl max-w-2xl mx-auto mb-12">
+                Enter your video topic and let our SEO engine forge high-value metadata variations for your YouTube channel.
+            </p>
 
-        <div class="w-full max-w-4xl mx-auto flex flex-col md:flex-row gap-4 mb-24">
-            <div class="flex-grow glass-card rounded-2xl p-1 flex items-center premium-glow">
-                <input type="text" id="topicInput" placeholder="Analyze your niche..." 
-                    class="w-full bg-transparent border-none outline-none px-8 py-5 text-xl font-semibold text-white placeholder-gray-800">
-            </div>
-            <button onclick="handleGenerate()" 
-                class="bg-red-600 hover:bg-red-700 text-white font-black px-12 py-6 rounded-2xl transition-all uppercase tracking-widest text-sm italic">
-                Analyze Topic
-            </button>
-        </div>
-
-        <div id="loading" class="hidden text-center mb-12 text-red-600 font-black animate-pulse tracking-[0.5em] text-xs">CALIBRATING AI NEURAL NETWORK...</div>
-
-        <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
-
-        <section id="faq" class="mt-40 mb-32 faq-gradient p-12 rounded-[3rem] border border-white/5">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-5xl font-black mb-16 italic tracking-tighter uppercase text-center">Optimization <span class="text-red-600">Manual</span></h2>
-                <div class="space-y-12">
-                    <div class="group">
-                        <h3 class="text-2xl font-bold mb-4 flex items-center gap-4 group-hover:text-red-500 transition">
-                            <span class="text-red-600 italic">01.</span> Semantic Keyword Density
-                        </h3>
-                        <p class="desc-text pl-12">Our AI utilizes Latent Semantic Indexing (LSI) to map content against trending global search intents.</p>
-                    </div>
-                    <div class="group">
-                        <h3 class="text-2xl font-bold mb-4 flex items-center gap-4 group-hover:text-red-500 transition">
-                            <span class="text-red-600 italic">02.</span> CTR-Driven Hook Architecture
-                        </h3>
-                        <p class="desc-text pl-12">Every title variation is designed using the 'Gap Principle' to trigger curiosity loops.</p>
-                    </div>
+            <!-- Search Box -->
+            <div class="w-full max-w-3xl mx-auto mb-6">
+                <div class="glass-input rounded-2xl flex items-center p-2 pl-6">
+                    <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="text" id="topicInput" placeholder="Example: How to Cook Steak, Stock Market Tips 2024" 
+                        class="w-full bg-transparent border-none outline-none px-4 py-4 text-lg text-white placeholder-gray-800">
+                    <button onclick="handleGenerate()" class="btn-generate flex items-center gap-2 text-white font-black px-8 py-4 rounded-xl uppercase tracking-widest text-sm">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"></path></svg>
+                        Generate
+                    </button>
                 </div>
             </div>
-        </section>
+
+            <!-- Tag Pills -->
+            <div class="flex flex-wrap justify-center gap-3 mb-20">
+                <span class="tag-pill px-4 py-1.5 rounded-full font-bold">#SECRET</span>
+                <span class="tag-pill px-4 py-1.5 rounded-full font-bold">#VIRAL</span>
+                <span class="tag-pill px-4 py-1.5 rounded-full font-bold">#FULL</span>
+                <span class="tag-pill px-4 py-1.5 rounded-full font-bold">#REVEALED</span>
+            </div>
+        </div>
+
+        <!-- Loading & Results -->
+        <div id="loading" class="hidden text-center mb-12 text-red-600 font-black animate-pulse tracking-[0.5em] text-xs">ARCHITECTING METADATA...</div>
+        <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-24"></div>
+
     </main>
 
     <footer class="border-t border-white/5 py-20 bg-black text-center">
@@ -86,14 +83,14 @@
             const topic = input.value.trim();
             if (!topic) return;
 
-            document.title = `${topic.toUpperCase()} | YT SEO Suite`;
-            document.getElementById('metaDesc').content = `Advanced AI-driven SEO metadata for ${topic}`;
-            document.getElementById('dynamicHeading').innerHTML = `<span class="text-red-600">${topic}</span>`;
+            // UI Changes
+            document.title = `${topic.toUpperCase()} | Power SEO`;
+            document.getElementById('dynamicHeading').innerHTML = `Neural Assets: <span class="text-red-600">${topic}</span>`;
+            document.getElementById('dynamicSub').innerText = "Top-tier metadata engineered for maximum discoverability.";
 
             if (!isHistory) {
                 const slug = topic.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
-                const newPath = window.location.origin + '/' + slug;
-                window.history.pushState({topic}, '', newPath);
+                window.history.pushState({topic}, '', window.location.origin + '/' + slug);
             }
 
             document.getElementById('loading').classList.remove('hidden');
@@ -107,20 +104,13 @@
                     body: JSON.stringify({ topic: topic })
                 });
                 const data = await response.json();
-                const filtered = data.results.filter(r => r.seo_score >= 6);
-                renderGrid(filtered);
+                renderGrid(data.results.filter(r => r.seo_score >= 6));
             } catch (err) {
-                console.error("Neural connection failed.");
+                console.error("Connection lost.");
             } finally {
                 document.getElementById('loading').classList.add('hidden');
+                document.getElementById('resultsGrid').scrollIntoView({ behavior: 'smooth' });
             }
-        }
-
-        function getScoreColor(s) {
-            if (s >= 10) return "#22c55e";
-            if (s >= 8) return "#86efac";
-            if (s >= 7) return "#d9f99d";
-            return "#fef08a";
         }
 
         function renderGrid(results) {
@@ -129,37 +119,25 @@
             for (let i = 1; i <= 9; i++) {
                 const box = document.createElement('div');
                 if (i === 2 || i === 5 || i === 8) {
-                    // AdSense Slot
-                    box.className = 'ad-box rounded-[2.5rem] p-4 flex flex-col items-center justify-center';
+                    box.className = 'ad-box rounded-[2.5rem] p-4 flex flex-col items-center justify-center min-h-[400px]';
                     box.innerHTML = `
-                        <span class="text-[8px] font-bold tracking-[0.3em] text-gray-600 mb-2 uppercase italic">Sponsored Segment</span>
-                        <ins class="adsbygoogle"
-                             style="display:block; width:100%; height:100%;"
-                             data-ad-client="ca-pub-CA-PUB-SILAKAN-GANTI-DISINI"
-                             data-ad-slot="ID-UNIT-IKLAN-DISINI"
-                             data-ad-format="fluid"
-                             data-ad-layout-key="-fb+5w+4e-db+86"
-                             data-full-width-responsive="true"></ins>
-                        <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>
-                    `;
+                        <span class="text-[8px] font-bold tracking-[0.3em] text-gray-600 mb-4 uppercase italic">Advertisement</span>
+                        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-CA-PUB-SILAKAN-GANTI-DISINI" data-ad-slot="ID-UNIT-IKLAN-DISINI" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-full-width-responsive="true"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>`;
                 } else {
                     const res = results[resIdx];
                     if (res) {
-                        const color = getScoreColor(res.seo_score);
                         box.className = 'glass-card rounded-[2.5rem] p-10 flex flex-col justify-between min-h-[450px]';
                         box.innerHTML = `
                             <div>
                                 <div class="flex items-center gap-2 mb-8">
-                                    <div class="w-1.5 h-1.5 rounded-full animate-pulse" style="background:${color}"></div>
-                                    <span class="text-[10px] font-bold uppercase tracking-[0.2em]" style="color:${color}">SEO Power: ${res.seo_score}/10</span>
+                                    <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest text-green-500">SEO Score: ${res.seo_score}/10</span>
                                 </div>
                                 <h3 class="text-2xl font-extrabold mb-6 leading-tight text-white">${res.title}</h3>
-                                <p class="desc-text text-sm mb-8">${res.desc}</p>
+                                <p class="premium-desc text-sm mb-8">${res.desc}</p>
                             </div>
-                            <button onclick="copy('${res.title}')" class="w-full py-4 bg-red-600 text-white hover:bg-red-700 transition rounded-xl font-black text-[10px] uppercase tracking-[0.2em]">
-                                Copy Title
-                            </button>
-                        `;
+                            <button onclick="copy('${res.title}')" class="w-full py-4 bg-red-600 text-white hover:bg-red-700 transition rounded-xl font-black text-[10px] uppercase tracking-widest">Copy Title</button>`;
                         resIdx++;
                     }
                 }
@@ -167,23 +145,12 @@
             }
         }
 
-        function copy(t) {
-            navigator.clipboard.writeText(t);
-            alert("Metadata Copied!");
-        }
-
-        window.onpopstate = (e) => {
-            if (e.state && e.state.topic) {
-                document.getElementById('topicInput').value = e.state.topic;
-                handleGenerate(true);
-            }
-        };
+        function copy(t) { navigator.clipboard.writeText(t); alert("Copied!"); }
 
         window.onload = () => {
-            const pathSegments = window.location.pathname.split('/');
-            const lastSegment = pathSegments.pop() || pathSegments.pop(); 
-            if (lastSegment && !lastSegment.includes('.html') && lastSegment !== 'gecko-seo-suite') {
-                const topic = lastSegment.replace(/-/g, ' ');
+            const path = window.location.pathname.split('/').pop();
+            if (path && !path.includes('.html') && path !== 'gecko-seo-suite') {
+                const topic = path.replace(/-/g, ' ');
                 document.getElementById('topicInput').value = topic;
                 handleGenerate();
             }
