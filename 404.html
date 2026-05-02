@@ -7,13 +7,17 @@
     <meta id="metaDesc" name="description" content="Elevate your YouTube performance with AI-driven metadata optimization.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- AdSense Header Script (Ganti ID AdSense Anda di sini jika diperlukan) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-CA-PUB-SILAKAN-GANTI-DISINI" crossorigin="anonymous"></script>
     <style>
         body { background-color: #030303; color: #ffffff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
         .glass-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.07); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .glass-card:hover { transform: scale(1.03) rotate(1deg); background: rgba(255, 255, 255, 0.04); border-color: rgba(220, 38, 38, 0.4); z-index: 10; }
-        .ad-box { background: repeating-linear-gradient(45deg, #080808, #080808 10px, #0c0c0c 10px, #0c0c0c 20px); border: 1px dashed #222; }
+        .glass-card:hover { transform: scale(1.02) translateY(-5px); background: rgba(255, 255, 255, 0.04); border-color: rgba(220, 38, 38, 0.4); z-index: 10; }
+        .ad-box { background: #080808; border: 1px solid #1a1a1a; position: relative; overflow: hidden; }
         .premium-glow { box-shadow: 0 0 40px -15px rgba(220, 38, 38, 0.2); }
         .faq-gradient { background: linear-gradient(180deg, rgba(220,38,38,0.05) 0%, rgba(0,0,0,0) 100%); }
+        /* Memperhalus tampilan deskripsi agar terlihat mahal */
+        .desc-text { color: #9ca3af; line-height: 1.7; font-weight: 400; letter-spacing: 0.01em; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -28,13 +32,12 @@
 
     <main class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16">
-            <h1 id="dynamicHeading" class="text-6xl md:text-8xl font-black tracking-tighter mb-6 italic uppercase leading-[0.9]">
+            <h1 id="dynamicHeading" class="text-6xl md:text-8xl font-black tracking-tighter mb-6 uppercase leading-[0.9]">
                 AI <span class="text-red-600">Metadata</span><br>Architect
             </h1>
             <p id="dynamicSub" class="text-gray-500 text-xl font-medium">Engineered for high-retention global YouTube growth.</p>
         </div>
 
-        <!-- Input Section -->
         <div class="w-full max-w-4xl mx-auto flex flex-col md:flex-row gap-4 mb-24">
             <div class="flex-grow glass-card rounded-2xl p-1 flex items-center premium-glow">
                 <input type="text" id="topicInput" placeholder="Analyze your niche..." 
@@ -48,10 +51,8 @@
 
         <div id="loading" class="hidden text-center mb-12 text-red-600 font-black animate-pulse tracking-[0.5em] text-xs">CALIBRATING AI NEURAL NETWORK...</div>
 
-        <!-- Grid 3x3 -->
         <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
 
-        <!-- FAQ Section -->
         <section id="faq" class="mt-40 mb-32 faq-gradient p-12 rounded-[3rem] border border-white/5">
             <div class="max-w-4xl mx-auto">
                 <h2 class="text-5xl font-black mb-16 italic tracking-tighter uppercase text-center">Optimization <span class="text-red-600">Manual</span></h2>
@@ -60,19 +61,13 @@
                         <h3 class="text-2xl font-bold mb-4 flex items-center gap-4 group-hover:text-red-500 transition">
                             <span class="text-red-600 italic">01.</span> Semantic Keyword Density
                         </h3>
-                        <p class="text-gray-500 text-lg leading-relaxed pl-12">Our AI utilizes Latent Semantic Indexing (LSI) to map content against trending global search intents.</p>
+                        <p class="desc-text pl-12">Our AI utilizes Latent Semantic Indexing (LSI) to map content against trending global search intents.</p>
                     </div>
                     <div class="group">
                         <h3 class="text-2xl font-bold mb-4 flex items-center gap-4 group-hover:text-red-500 transition">
                             <span class="text-red-600 italic">02.</span> CTR-Driven Hook Architecture
                         </h3>
-                        <p class="text-gray-500 text-lg leading-relaxed pl-12">Every title variation is designed using the 'Gap Principle' to trigger curiosity loops.</p>
-                    </div>
-                    <div class="group">
-                        <h3 class="text-2xl font-bold mb-4 flex items-center gap-4 group-hover:text-red-500 transition">
-                            <span class="text-red-600 italic">03.</span> Meta-Data Scoring System
-                        </h3>
-                        <p class="text-gray-500 text-lg leading-relaxed pl-12">Scores between 6-10 are prioritized based on competitive difficulty and velocity trends.</p>
+                        <p class="desc-text pl-12">Every title variation is designed using the 'Gap Principle' to trigger curiosity loops.</p>
                     </div>
                 </div>
             </div>
@@ -91,12 +86,10 @@
             const topic = input.value.trim();
             if (!topic) return;
 
-            // Update SEO & UI
             document.title = `${topic.toUpperCase()} | YT SEO Suite`;
-            document.getElementById('metaDesc').content = `Advanced AI-driven SEO metadata for ${topic}. Optimize your titles and descriptions.`;
-            document.getElementById('dynamicHeading').innerHTML = `Neural Assets: <span class="text-red-600">${topic}</span>`;
+            document.getElementById('metaDesc').content = `Advanced AI-driven SEO metadata for ${topic}`;
+            document.getElementById('dynamicHeading').innerHTML = `<span class="text-red-600">${topic}</span>`;
 
-            // Fix URL: Menjaga struktur bitcoinfunds.github.io/slug
             if (!isHistory) {
                 const slug = topic.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
                 const newPath = window.location.origin + '/' + slug;
@@ -124,10 +117,10 @@
         }
 
         function getScoreColor(s) {
-            if (s >= 10) return "#22c55e"; // Hijau
-            if (s >= 8) return "#86efac";  // Hijau Muda
-            if (s >= 7) return "#d9f99d";  // Hijau Kekuningan
-            return "#fef08a";              // Kekuningan
+            if (s >= 10) return "#22c55e";
+            if (s >= 8) return "#86efac";
+            if (s >= 7) return "#d9f99d";
+            return "#fef08a";
         }
 
         function renderGrid(results) {
@@ -136,8 +129,19 @@
             for (let i = 1; i <= 9; i++) {
                 const box = document.createElement('div');
                 if (i === 2 || i === 5 || i === 8) {
-                    box.className = 'ad-box rounded-[2rem] p-10 flex flex-col items-center justify-center text-center italic';
-                    box.innerHTML = `<span class="text-[9px] font-black tracking-[0.5em] text-red-500 mb-6 uppercase">Ad Segment</span><div class="text-gray-800 text-xs font-bold leading-relaxed">ADSENSE GLOBAL<br>PREMIUM UNIT</div>`;
+                    // AdSense Slot
+                    box.className = 'ad-box rounded-[2.5rem] p-4 flex flex-col items-center justify-center';
+                    box.innerHTML = `
+                        <span class="text-[8px] font-bold tracking-[0.3em] text-gray-600 mb-2 uppercase italic">Sponsored Segment</span>
+                        <ins class="adsbygoogle"
+                             style="display:block; width:100%; height:100%;"
+                             data-ad-client="ca-pub-CA-PUB-SILAKAN-GANTI-DISINI"
+                             data-ad-slot="ID-UNIT-IKLAN-DISINI"
+                             data-ad-format="fluid"
+                             data-ad-layout-key="-fb+5w+4e-db+86"
+                             data-full-width-responsive="true"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>
+                    `;
                 } else {
                     const res = results[resIdx];
                     if (res) {
@@ -146,13 +150,13 @@
                         box.innerHTML = `
                             <div>
                                 <div class="flex items-center gap-2 mb-8">
-                                    <div class="w-2 h-2 rounded-full animate-pulse" style="background:${color}"></div>
-                                    <span class="text-[10px] font-bold uppercase tracking-widest" style="color:${color}">SEO Power: ${res.seo_score}/10</span>
+                                    <div class="w-1.5 h-1.5 rounded-full animate-pulse" style="background:${color}"></div>
+                                    <span class="text-[10px] font-bold uppercase tracking-[0.2em]" style="color:${color}">SEO Power: ${res.seo_score}/10</span>
                                 </div>
-                                <h3 class="text-2xl font-extrabold mb-6 leading-tight text-white italic">${res.title}</h3>
-                                <p class="text-gray-500 text-sm leading-relaxed font-medium mb-8">${res.desc}</p>
+                                <h3 class="text-2xl font-extrabold mb-6 leading-tight text-white">${res.title}</h3>
+                                <p class="desc-text text-sm mb-8">${res.desc}</p>
                             </div>
-                            <button onclick="copy('${res.title}')" class="w-full py-4 bg-red-600 text-white hover:bg-red-700 transition rounded-xl font-black text-[10px] uppercase tracking-widest">
+                            <button onclick="copy('${res.title}')" class="w-full py-4 bg-red-600 text-white hover:bg-red-700 transition rounded-xl font-black text-[10px] uppercase tracking-[0.2em]">
                                 Copy Title
                             </button>
                         `;
@@ -176,10 +180,8 @@
         };
 
         window.onload = () => {
-            // Logic untuk menangkap path URL github.io/slug
             const pathSegments = window.location.pathname.split('/');
             const lastSegment = pathSegments.pop() || pathSegments.pop(); 
-            
             if (lastSegment && !lastSegment.includes('.html') && lastSegment !== 'gecko-seo-suite') {
                 const topic = lastSegment.replace(/-/g, ' ');
                 document.getElementById('topicInput').value = topic;
