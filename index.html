@@ -1,77 +1,119 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YT SEO Suite - AI Metadata Generator</title>
+    <title id="pageTitle">YT SEO Suite - AI Metadata Generator</title>
+    <meta id="metaDesc" name="description" content="Free AI-powered YouTube title and description generator to boost your video CTR and views instantly.">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #0a0a0a; color: #ffffff; }
-        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .gradient-text { background: linear-gradient(90deg, #ff4d4d, #f9cb28); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        body { background-color: #050505; color: #ffffff; font-family: 'Inter', sans-serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.3s ease; }
+        .glass-card:hover { border-color: rgba(220, 38, 38, 0.5); transform: translateY(-2px); }
+        .nav-link { color: #9ca3af; transition: color 0.2s; }
+        .nav-link:hover { color: #ffffff; }
+        .premium-shadow { box-shadow: 0 0 50px -12px rgba(220, 38, 38, 0.15); }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center p-6">
+<body class="min-h-screen flex flex-col">
 
-    <!-- Header Section -->
-    <header class="text-center my-12">
-        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4">
-            Dapatkan Judul <span class="text-red-600">Viral</span><br>Dengan AI
-        </h1>
-        <p class="text-gray-400 text-lg">Optimalkan Metadata Video YouTube Anda dalam Sekejap.</p>
-    </header>
+    <!-- Navigation Header -->
+    <nav class="w-full max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+        <div class="text-2xl font-black tracking-tighter text-red-600">YT<span class="text-white">SEO</span></div>
+        <div class="hidden md:flex gap-8 font-medium">
+            <a href="/" class="nav-link">Home</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+            <a href="#" class="nav-link text-red-500 font-bold">Pro Tools</a>
+        </div>
+        <button class="bg-white text-black px-5 py-2 rounded-full font-bold text-sm">Get Started</button>
+    </nav>
 
-    <!-- Input Section -->
-    <div class="w-full max-w-3xl glass-card rounded-2xl p-2 mb-8 flex flex-col md:flex-row gap-2">
-        <input type="text" id="topicInput" placeholder="Ketik topik video Anda di sini..." 
-            class="flex-1 bg-transparent border-none outline-none p-4 text-xl text-white placeholder-gray-600">
-        <button onclick="handleGenerate()" id="btnGenerate"
-            class="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-xl transition-all active:scale-95 uppercase tracking-wider">
-            Generate
-        </button>
-    </div>
+    <!-- Hero Section -->
+    <main class="flex-grow flex flex-col items-center px-6">
+        <header class="text-center mt-16 mb-12">
+            <h1 id="dynamicHeading" class="text-5xl md:text-8xl font-black tracking-tighter leading-none mb-6 italic">
+                Get <span class="text-red-600">Viral</span> Titles<br>With AI
+            </h1>
+            <p class="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto">Optimize your YouTube video metadata in seconds for maximum global reach.</p>
+        </header>
 
-    <!-- AdSense Placeholder (Top) -->
-    <div class="w-full max-w-4xl h-24 glass-card rounded-xl mb-8 flex items-center justify-center text-gray-600 text-sm uppercase tracking-widest">
-        AdSense Ad Space
-    </div>
+        <!-- Search Bar -->
+        <div class="w-full max-w-3xl glass-card rounded-3xl p-3 mb-10 flex flex-col md:row gap-2 premium-shadow">
+            <input type="text" id="topicInput" placeholder="Enter video topic e.g. 'Bitcoin analysis 2026'" 
+                class="flex-1 bg-transparent border-none outline-none p-4 text-xl font-medium text-white placeholder-gray-700">
+            <button onclick="handleGenerate()" id="btnGenerate"
+                class="bg-red-600 hover:bg-red-700 text-white font-black px-10 py-5 rounded-2xl transition-all active:scale-95 uppercase">
+                Generate
+            </button>
+        </div>
 
-    <!-- Loading & Error Message -->
-    <div id="loading" class="hidden mb-4 text-blue-400 font-medium animate-pulse">Sedang meracik konten...</div>
-    <div id="errorMessage" class="hidden mb-4 text-red-500 font-medium text-center"></div>
+        <!-- Ads Space 1 -->
+        <div class="w-full max-w-4xl h-32 glass-card rounded-2xl mb-12 flex items-center justify-center text-gray-700 font-bold uppercase tracking-[0.5em] text-[10px]">
+            ADVERTISEMENT
+        </div>
 
-    <!-- Results Section -->
-    <div id="resultsContainer" class="w-full max-w-4xl grid grid-cols-1 gap-6">
-        <!-- Hasil akan muncul di sini -->
-    </div>
+        <div id="loading" class="hidden mb-10 text-red-500 font-bold animate-pulse tracking-widest uppercase italic">AI is cooking...</div>
 
-    <!-- Footer / AdSense Placeholder (Bottom) -->
-    <div class="mt-12 w-full max-w-4xl h-24 glass-card rounded-xl flex items-center justify-center text-gray-600 text-sm uppercase tracking-widest">
-        AdSense Ad Space
-    </div>
+        <!-- Results Container -->
+        <div id="resultsContainer" class="w-full max-w-4xl space-y-8">
+            <!-- Results will be injected here -->
+        </div>
+
+        <!-- Ads Space 2 -->
+        <div id="bottomAds" class="hidden mt-12 w-full max-w-4xl h-32 glass-card rounded-2xl flex items-center justify-center text-gray-700 font-bold uppercase tracking-[0.5em] text-[10px]">
+            ADVERTISEMENT
+        </div>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="w-full max-w-3xl mt-32 mb-20">
+            <h2 class="text-3xl font-black mb-10 italic underline decoration-red-600">Frequently Asked Questions</h2>
+            <div class="space-y-6">
+                <div class="glass-card p-8 rounded-2xl">
+                    <h3 class="font-bold text-xl mb-2 text-red-500">Is this tool free to use?</h3>
+                    <p class="text-gray-400">Absolutely! Our tool is 100% free for creators to optimize their SEO and increase video visibility.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl">
+                    <h3 class="font-bold text-xl mb-2 text-red-500">How does the AI work?</h3>
+                    <p class="text-gray-400">We use the latest Gemini 2.5 Flash model to analyze keywords and generate high-CTR titles used by top creators.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t border-gray-900 mt-20 px-6 py-10 bg-black">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-gray-500 text-sm">
+            <div>© 2026 YTSEO Global Suite. All rights reserved.</div>
+            <div class="flex gap-8">
+                <a href="#" class="hover:text-white">Privacy</a>
+                <a href="#" class="hover:text-white">Terms</a>
+                <a href="#" class="hover:text-white">Contact</a>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // KONFIGURASI WORKER ANDA
         const API_ENDPOINT = 'https://gemini-api-beridge.solitontoken.workers.dev';
 
         async function handleGenerate() {
             const input = document.getElementById('topicInput');
             const topic = input.value.trim();
-            
-            if (!topic) {
-                alert("Masukkan topik terlebih dahulu!");
-                return;
-            }
+            if (!topic) return;
 
-            // 1. Update URL (Slug) - Strategi Reload/SEO
+            // 1. Dynamic SEO & Heading
+            document.getElementById('dynamicHeading').innerHTML = `SEO Assets for <span class="text-red-600 uppercase">${topic}</span>`;
+            document.title = `SEO Metadata for ${topic} | YT SEO Suite`;
+            document.getElementById('metaDesc').content = `Get 7 viral title and description variations for ${topic} to boost your YouTube algorithm performance.`;
+
+            // 2. URL Slug
             const slug = topic.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
             window.history.pushState({}, '', '/' + slug);
 
-            // 2. UI Loading State
+            // 3. UI State
             document.getElementById('loading').classList.remove('hidden');
-            document.getElementById('errorMessage').classList.add('hidden');
             document.getElementById('resultsContainer').innerHTML = '';
-            document.getElementById('btnGenerate').disabled = true;
+            document.getElementById('bottomAds').classList.add('hidden');
 
             try {
                 const response = await fetch(API_ENDPOINT, {
@@ -79,49 +121,36 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ topic: topic })
                 });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error || "Gagal menghubungi AI");
-                }
-
                 const data = await response.json();
-                displayResults(data.results);
-
+                renderCards(data.results);
             } catch (err) {
-                console.error(err);
-                const errEl = document.getElementById('errorMessage');
-                errEl.innerText = "Error: " + err.message + ". Pastikan Cloudflare Worker aktif.";
-                errEl.classList.remove('hidden');
+                alert("Generation failed. Please check your connection.");
             } finally {
                 document.getElementById('loading').classList.add('hidden');
-                document.getElementById('btnGenerate').disabled = false;
             }
         }
 
-        function displayResults(results) {
+        function renderCards(results) {
             const container = document.getElementById('resultsContainer');
             results.forEach((item, index) => {
                 const card = document.createElement('div');
-                card.className = 'glass-card p-6 rounded-2xl border-l-4 border-red-600 hover:scale-[1.01] transition-transform';
+                card.className = 'glass-card p-8 md:p-12 rounded-[2rem] relative overflow-hidden premium-shadow';
                 card.innerHTML = `
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs font-bold bg-red-600 px-2 py-1 rounded">VARIAN ${index + 1}</span>
-                        <button onclick="copyText('${item.title}')" class="text-xs text-gray-400 hover:text-white underline">Salin Judul</button>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">${item.title}</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">${item.desc}</p>
+                    <div class="absolute top-0 left-0 bg-red-600 text-white text-[10px] font-black px-5 py-1 uppercase tracking-widest">Option ${index + 1}</div>
+                    <button onclick="copy('${item.title}')" class="absolute top-6 right-8 text-gray-500 hover:text-white text-[10px] font-black uppercase tracking-widest underline">Copy Title</button>
+                    <h3 class="text-2xl md:text-4xl font-extrabold mb-6 mt-6 leading-tight text-white">${item.title}</h3>
+                    <p class="text-gray-400 text-lg md:text-xl leading-relaxed font-medium">${item.desc}</p>
                 `;
                 container.appendChild(card);
             });
+            document.getElementById('bottomAds').classList.remove('hidden');
         }
 
-        function copyText(text) {
-            navigator.clipboard.writeText(text);
-            alert("Judul disalin!");
+        function copy(t) {
+            navigator.clipboard.writeText(t);
+            alert("Copied to clipboard!");
         }
 
-        // Otomatis jalankan jika ada slug di URL (Fitur Reload)
         window.onload = () => {
             const path = window.location.pathname.substring(1);
             if (path && path !== "index.html" && path !== "404.html") {
