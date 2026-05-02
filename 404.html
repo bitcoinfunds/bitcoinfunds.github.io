@@ -93,17 +93,28 @@
             letter-spacing: 0.1em; 
         }
         .premium-desc-text { color: #9ca3af; line-height: 1.7; font-weight: 400; }
+
+        /* Smooth Footer Links */
+        .footer-link {
+            transition: color 0.3s ease;
+        }
+        .footer-link:hover {
+            color: #ef4444;
+        }
     </style>
 </head>
 <body class="min-h-screen">
 
+    <!-- Navigasi Header dengan Link ke Home -->
     <nav class="w-full max-w-7xl mx-auto px-8 py-10 flex justify-between items-center">
-        <div class="text-3xl font-black tracking-tighter">YT<span class="text-red-600">SEO.</span></div>
+        <a href="/" class="text-3xl font-black tracking-tighter hover:opacity-80 transition">
+            YT<span class="text-red-600">SEO.</span>
+        </a>
     </nav>
 
     <main class="max-w-7xl mx-auto px-6">
         <div class="text-center py-10">
-            <h1 id="dynamicHeading" class="text-5xl md:text-7xl font-black tracking-tight mb-6 uppercase">
+            <h1 id="dynamicHeading" class="text-5xl md:text-7xl font-black tracking-tight mb-6 uppercase leading-[1.1]">
                 Inject <span class="text-red-600">SEO Power</span> into<br>your Metadata
             </h1>
             <p id="dynamicSub" class="premium-desc-text text-lg md:text-xl max-w-2xl mx-auto mb-12">
@@ -131,12 +142,27 @@
             </div>
         </div>
 
-        <div id="loading" class="hidden text-center mb-12 text-red-600 font-black animate-pulse tracking-[0.5em] text-xs">GENERATE HIGH-SCORE YT ASSET...</div>
+        <div id="loading" class="hidden text-center mb-12 text-red-600 font-black animate-pulse tracking-[0.5em] text-xs uppercase">Generate High-Score YT Asset...</div>
         <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-24"></div>
+
+        <!-- Narasi Powerful Section -->
+        <section class="max-w-4xl mx-auto text-center pb-32 border-t border-white/5 pt-20">
+            <h2 class="text-2xl font-black uppercase tracking-widest mb-8">Why SEO Power Matters?</h2>
+            <p class="text-gray-400 leading-relaxed text-lg italic">
+                "Metadata bukan sekadar teks; ia adalah <span class="text-white font-bold">DNA</span> yang menentukan apakah algoritma YouTube akan mengangkat video Anda ke puncak atau membiarkannya tenggelam. <span class="text-red-600 font-bold">YT SEO Suite</span> menggunakan kecerdasan buatan untuk merancang arsitektur judul dan deskripsi yang memiliki CTR tinggi serta relevansi kata kunci yang tajam. Ubah konten biasa menjadi magnet trafik yang tak terhentikan."
+            </p>
+        </section>
     </main>
 
+    <!-- Footer dengan Navigasi Link -->
     <footer class="border-t border-white/5 py-20 bg-black text-center">
-        <div class="text-gray-700 font-bold tracking-[1em] text-[10px] uppercase">YT SEO © 2026</div>
+        <div class="flex justify-center gap-8 mb-8 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">
+            <a href="/" class="footer-link">Home</a>
+            <a href="#" class="footer-link">About AI</a>
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+        </div>
+        <div class="text-gray-800 font-bold tracking-[1em] text-[10px] uppercase">YT SEO © 2026</div>
     </footer>
 
     <script>
@@ -183,7 +209,6 @@
             for (let i = 1; i <= 9; i++) {
                 const box = document.createElement('div');
 
-                // ADSENSE SLOT (Slot 2, 5, dan 8)
                 if (i === 2 || i === 5 || i === 8) {
                     box.className = 'ad-box rounded-[2.5rem] p-4 flex flex-col items-center justify-center min-h-[400px] border border-dashed border-white/10 overflow-hidden';
                     box.innerHTML = `
@@ -198,11 +223,10 @@
                     `;
                     grid.appendChild(box);
 
-                    // MEMANGGIL ADSENSE SECARA AMAN SETELAH ELEMENT DIBUAT
                     try {
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     } catch (e) {
-                        console.info("Ad blocker detected or AdSense not ready.");
+                        console.info("AdSense ready.");
                     }
                 } else {
                     const res = results[resIdx];
