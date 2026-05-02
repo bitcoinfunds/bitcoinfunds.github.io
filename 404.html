@@ -88,7 +88,6 @@
             
             if (!topic) return;
 
-            // UI State - Disable button to prevent double clicks
             btn.disabled = true;
             document.getElementById('loading').classList.remove('hidden');
             const grid = document.getElementById('resultsGrid');
@@ -97,7 +96,6 @@
             document.title = `${topic.toUpperCase()} | YT SEO`;
             document.getElementById('dynamicHeading').innerHTML = `SEO Power: <span class="text-red-600">${topic}</span>`;
 
-            // Update URL for SEO/Sharing
             if (!isHistory) {
                 const slug = topic.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
                 try {
@@ -106,35 +104,36 @@
             }
 
             try {
-                // FETCH WITH EXPLICIT CORS HEADERS
+                // Perbaikan utama: Tambahkan mode cors dan handle response lebih detail
                 const response = await fetch(API_ENDPOINT, {
                     method: 'POST',
-                    mode: 'cors', // Explicitly handle cross-origin
+                    mode: 'cors', 
                     headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ topic: topic })
                 });
 
-                if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                if (!response.ok) {
+                    const errorMsg = await response.text();
+                    throw new Error(errorMsg || `Server Error: ${response.status}`);
+                }
                 
                 const data = await response.json();
                 
-                if (data && data.results) {
-                    // Filter based on relevance/score
-                    const filtered = data.results.filter(r => r.seo_score >= 1); 
-                    renderGrid(filtered);
+                // Pastikan merender hasil asli dari Gemini
+                if (data && data.results && data.results.length > 0) {
+                    renderGrid(data.results);
                 } else {
-                    grid.innerHTML = `<p class="col-span-full text-center text-gray-500 uppercase font-bold tracking-widest">No DNA found for this topic.</p>`;
+                    grid.innerHTML = `<p class="col-span-full text-center text-gray-500 uppercase font-bold tracking-widest">AI could not generate DNA for this topic.</p>`;
                 }
 
             } catch (err) {
-                console.error("API Connection Error:", err);
+                console.error("Fetch error:", err);
                 grid.innerHTML = `
                     <div class="col-span-full text-center p-10 border border-red-900/30 rounded-[2rem] bg-red-900/5">
-                        <p class="text-red-500 uppercase font-bold tracking-widest mb-2">Connection Blocked or Lost</p>
-                        <p class="text-gray-500 text-xs">Ensure your Cloudflare Worker has CORS enabled (Access-Control-Allow-Origin: *)</p>
+                        <p class="text-red-500 uppercase font-bold tracking-widest mb-2">Connection Blocked</p>
+                        <p class="text-gray-500 text-xs">If this persists, check if your Cloudflare Worker includes CORS headers.</p>
                     </div>`;
             } finally {
                 btn.disabled = false;
@@ -180,18 +179,29 @@
         }
 
         function copy(t) { 
-            navigator.clipboard.writeText(t).then(() => {
-                alert("Metadata Copied to Clipboard!");
-            }).catch(() => {
-                // Fallback for older browsers/non-https
-                const el = document.createElement('textarea');
-                el.value = t;
-                document.body.appendChild(el);
-                el.select();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(t).then(() => {
+                    alert("Metadata Copied!");
+                }).catch(err => {
+                    fallbackCopy(t);
+                });
+            } else {
+                fallbackCopy(t);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
                 document.execCommand('copy');
-                document.body.removeChild(el);
                 alert("Metadata Copied!");
-            });
+            } catch (err) {
+                console.error('Fallback copy failed', err);
+            }
+            document.body.removeChild(textArea);
         }
 
         window.onload = () => {
