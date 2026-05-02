@@ -3,122 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfect Input Replica</title>
+    <title id="pageTitle">YT SEO Suite - Premium AI Metadata Architect</title>
+    <meta id="metaDesc" name="description" content="Elevate your YouTube performance with AI-driven metadata optimization.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- AdSense Header Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-CA-PUB-SILAKAN-GANTI-DISINI" crossorigin="anonymous"></script>
+    
     <style>
-        body {
-            background-color: #0d0d0d; /* Latar belakang gelap total sesuai gambar */
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        /* Container Utama Input Group */
+        body { background-color: #0d0d0d; color: #ffffff; font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+        
+        /* 100% Identical Search Container */
         .search-container {
             display: flex;
             align-items: center;
-            background-color: #111111; /* Warna gelap input saat diam */
-            border: 1px solid #222222; /* Border tipis gelap */
-            border-radius: 20px; /* Radius kelengkungan besar sesuai gambar */
-            padding: 6px; /* Padding dalam untuk memberi ruang tombol */
+            background-color: #111111;
+            border: 1px solid #222222;
+            border-radius: 20px;
+            padding: 6px;
             width: 100%;
-            max-width: 720px; /* Lebar maksimal mendekati referensi */
+            max-width: 720px;
+            margin: 0 auto;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-
-        /* Style saat Container di-klik (Focus) */
         .search-container:focus-within {
-            border-color: #ef4444; /* Border berubah merah saat focus */
-            background-color: #111111 !important; /* KUNCI: Tetap gelap saat focus */
-            box-shadow: 0 0 15px rgba(239, 68, 68, 0.2); /* Efek glow merah halus */
+            border-color: #ef4444;
+            background-color: #111111 !important; /* Lock dark background */
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
         }
-
-        /* Ikon Pencarian Merah */
-        .search-icon {
-            color: #ef4444; /* Warna merah cerah */
-            margin-left: 18px;
-            margin-right: 12px;
-            flex-shrink: 0;
-        }
-
-        /* Input Teks */
+        .search-icon { color: #ef4444; margin-left: 18px; margin-right: 12px; flex-shrink: 0; }
         .search-input {
             flex-grow: 1;
-            background-color: transparent; /* Transparan agar mengikuti container */
+            background-color: transparent;
             border: none;
             outline: none;
-            color: #ffffff; /* Warna teks putih */
+            color: #ffffff;
             font-size: 16px;
             font-weight: 600;
             padding: 12px 0;
         }
+        .search-input::placeholder { color: #444444; font-weight: 600; }
 
-        /* Placeholder Teks Abu-abu Tua */
-        .search-input::placeholder {
-            color: #444444; /* Warna abu-abu tua sesuai gambar */
-            font-weight: 600;
-        }
-
-        /* Tombol Generate Premium */
+        /* Premium Generate Button */
         .generate-btn {
             display: flex;
             align-items: center;
             gap: 8px;
-            /* Gradien merah tua ke merah hati sesuai gambar */
             background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%);
             color: #ffffff;
             border: none;
-            border-radius: 14px; /* Radius sedikit lebih kecil dari container */
+            border-radius: 14px;
             padding: 12px 24px;
             font-size: 13px;
-            font-weight: 800; /* Extra Bold */
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.1em; /* Jarak antar huruf */
+            letter-spacing: 0.1em;
             cursor: pointer;
             transition: all 0.2s ease;
-            white-space: nowrap;
-            margin-left: 10px;
         }
 
-        /* Efek Hover Tombol */
-        .generate-btn:hover {
-            transform: translateY(-1px);
-            filter: brightness(1.1); /* Sedikit lebih terang saat hover */
-        }
-
-        /* Efek Klik Tombol */
-        .generate-btn:active {
-            transform: translateY(1px);
-        }
+        /* Results & Tags Style */
+        .glass-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.07); transition: all 0.4s ease; }
+        .tag-pill { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); color: #666; font-size: 10px; letter-spacing: 0.1em; }
+        .desc-text { color: #9ca3af; line-height: 1.7; font-weight: 400; }
+        .ad-box { background: #080808; border: 1px solid #1a1a1a; }
     </style>
 </head>
-<body>
+<body class="min-h-screen">
 
-    <!-- Komponen Input Group Utuh -->
-    <div class="search-container">
-        <!-- Ikon Pencarian SVG -->
-        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        
-        <!-- Input Teks dengan Placeholder -->
-        <input type="text" class="search-input" placeholder="Example: How to Cook Steak, Stock Market Tips 2024">
-        
-        <!-- Tombol Generate dengan Ikon Kilat -->
-        <button class="generate-btn">
-            <!-- Ikon Kilat SVG -->
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
-            </svg>
-            Generate
-        </button>
-    </div>
+    <nav class="w-full max-w-7xl mx-auto px-8 py-10 flex justify-between items-center">
+        <div class="text-3xl font-black tracking-tighter">YT<span class="text-red-600">SEO.</span></div>
+    </nav>
 
+    <main class="max-w-7xl mx-auto px-6">
+        <!-- Hero Section -->
+        <div class="text-center py-10">
+            <h1 id="dynamicHeading" class="text-5xl md:text-7xl font-black tracking-tight mb-6 uppercase">
+                Inject <span class="text-red-600">Power</span> into your<br>Metadata
+            </h1>
+            <p id="dynamicSub" class="desc-text text-lg md:text-xl max-w-2xl mx-auto mb-12">
+                Enter your video topic and let our SEO engine forge high-value metadata variations for your YouTube channel.
+            </p>
+
+            <!-- THE SEARCH COMPONENT (Identical to Image) -->
+            <div class="search-container mb-6">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="topicInput" class="search-input" placeholder="Example: How to Cook Steak, Stock Market Tips 2024">
+                <button onclick="handleGenerate()" class="generate-btn">
+                    <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"></path>
+                    </svg>
+                    Generate
+                </button>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 mb-20">
+                <span class="tag-pill px-4 py-1.5 rounded-full font-bold">#SECRET</span>
+                <span class="tag-pill px-4 py-1.5 rounded-full font-bold">#VIRAL</span>
+                <span class="tag-pill px-4 py-1.5 rounded-full font-bold">#FULL</span>
+                <span class="tag-pill px-4 py-1.5 rounded-full font-bold">#REVEALED</span>
+            </div>
+        </div>
+
+        <!-- Loading & Results Grid -->
+        <div id="loading" class="hidden text-center mb-12 text-red-600 font-black animate-pulse tracking-[0.5em] text-xs">ARCHITECTING ASSETS...</div>
+        <div id="resultsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-24"></div>
+    </main>
+
+    <script>
+        const API_ENDPOINT = 'https://gemini-api-beridge.solitontoken.workers.dev';
+
+        async function handleGenerate(isHistory = false) {
+            const input = document.getElementById('topicInput');
+            const topic = input.value.trim();
+            if (!topic) return;
+
+            // Update UI
+            document.title = `${topic.toUpperCase()} | YT SEO`;
+            document.getElementById('dynamicHeading').innerHTML = `Neural Assets: <span class="text-red-600">${topic}</span>`;
+            
+            if (!isHistory) {
+                const slug = topic.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+                window.history.pushState({topic}, '', window.location.origin + '/' + slug);
+            }
+
+            document.getElementById('loading').classList.remove('hidden');
+            const grid = document.getElementById('resultsGrid');
+            grid.innerHTML = '';
+
+            try {
+                const response = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ topic: topic })
+                });
+                const data = await response.json();
+                renderGrid(data.results.filter(r => r.seo_score >= 6));
+            } catch (err) {
+                console.error("Connection error");
+            } finally {
+                document.getElementById('loading').classList.add('hidden');
+                grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function renderGrid(results) {
+            const grid = document.getElementById('resultsGrid');
+            let resIdx = 0;
+            for (let i = 1; i <= 9; i++) {
+                const box = document.createElement('div');
+                if (i === 2 || i === 5 || i === 8) {
+                    // ADSENSE SLOT
+                    box.className = 'ad-box rounded-[2.5rem] p-4 flex flex-col items-center justify-center min-h-[400px]';
+                    box.innerHTML = `
+                        <span class="text-[8px] font-bold tracking-[0.3em] text-gray-700 mb-4 uppercase italic">Sponsor</span>
+                        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-CA-PUB-SILAKAN-GANTI-DISINI" data-ad-slot="ID-UNIT-IKLAN-DISINI" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-full-width-responsive="true"></ins>
+                        <script>(adsbygoogle = window.adsbygoogle || []).push({});<\/script>`;
+                } else {
+                    const res = results[resIdx];
+                    if (res) {
+                        box.className = 'glass-card rounded-[2.5rem] p-10 flex flex-col justify-between min-h-[450px]';
+                        box.innerHTML = `
+                            <div>
+                                <div class="flex items-center gap-2 mb-8">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+                                    <span class="text-[10px] font-bold uppercase tracking-widest text-green-500">SEO Score: ${res.seo_score}/10</span>
+                                </div>
+                                <h3 class="text-2xl font-extrabold mb-6 leading-tight text-white">${res.title}</h3>
+                                <p class="desc-text text-sm mb-8">${res.desc}</p>
+                            </div>
+                            <button onclick="copy('${res.title}')" class="w-full py-4 bg-red-600 text-white hover:bg-red-700 transition rounded-xl font-black text-[10px] uppercase tracking-widest">Copy Title</button>`;
+                        resIdx++;
+                    }
+                }
+                grid.appendChild(box);
+            }
+        }
+
+        function copy(t) { navigator.clipboard.writeText(t); alert("Metadata Copied!"); }
+
+        window.onload = () => {
+            const path = window.location.pathname.split('/').pop();
+            if (path && !path.includes('.html') && path !== 'gecko-seo-suite') {
+                const topic = path.replace(/-/g, ' ');
+                document.getElementById('topicInput').value = topic;
+                handleGenerate();
+            }
+        };
+    </script>
 </body>
 </html>
